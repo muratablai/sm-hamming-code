@@ -9,7 +9,7 @@ University of Bucharest, Romania
 
 ## Abstract
 
-We show that the four parameters of the Cabibbo–Kobayashi–Maskawa matrix, together with the strong CP phase and the proton lifetime, follow from the [7,4,3] Hamming code over GF(8). The Frobenius automorphism partitions seven bit positions into three orbits (sizes 1, 3, 3) identified with quark generations. Probability templates are derived from first principles: the third generation occupies the Frobenius fixed point, the second is maximum-entropy on six real dimensions of the complex orbit, and the first is weighted by the electromagnetic parity check. The Cramér–Rao correlation coefficient r₁₂ = −7/√52 gives sin²θ₁₂ = 3/52, and the code's error-detection probability 7/8 yields |V\_us|² = 21/416 (0.14% match to data). The weak coupling g² = (n−k)/n = 3/7 is derived from the code's redundancy rate (0.25%), and the complement map gives |V\_cb|² = α\_w × 21/416 (0.75%). The cyclotomic Gauss period argument yields δ\_CKM = arctan √7 with sin²δ = 7/8, and |V\_ub| = |V\_us| |V\_cb| δ/(n−k) follows (0.3%). As corollaries: θ\_QCD = 0 exactly (the strong Gauss period ratio equals −1 ∈ ℝ), the gauge group structure constants emerge via the chain Fano plane → octonion multiplication → G₂ → SU(3), and the proton lifetime τ ≈ 10⁴⁴ years follows from triple parity-check failure at the code's minimum distance d = 3. No free parameters beyond one overall scale (M\_P).
+We show that the four parameters of the Cabibbo–Kobayashi–Maskawa matrix, together with the strong CP phase and the proton lifetime, follow from the [7,4,3] Hamming code over GF(8). The Frobenius automorphism partitions seven bit positions into three orbits (sizes 1, 3, 3) identified with quark generations. Probability templates are derived from the code's structure: the third generation occupies the Frobenius fixed point, the second is uniform on six positions (forced by codeword marginals), and the first is constrained to four minimum-cost transversals by a syndrome-weight minimality rule — all four producing the identical Poisson Fisher matrix. The Cramér–Rao correlation coefficient r₁₂ = −7/√52 gives sin²θ₁₂ = 3/52, and the code's error-detection probability 7/8 yields |V\_us|² = 21/416 (0.14% match to data). The weak coupling g² = (n−k)/n = 3/7 is derived from the code's redundancy rate (0.25%), and the complement map gives |V\_cb|² = α\_w × 21/416 (0.75%). The cyclotomic Gauss period argument yields δ\_CKM = arctan √7 with sin²δ = 7/8, and |V\_ub| = |V\_us| |V\_cb| δ/(n−k) follows (0.3%). As corollaries: θ\_QCD = 0 exactly (the strong Gauss period ratio equals −1 ∈ ℝ), the gauge group structure constants emerge via the chain Fano plane → octonion multiplication → G₂ → SU(3), and the proton lifetime τ ≈ 10⁴⁴ years follows from triple parity-check failure at the code's minimum distance d = 3. No free parameters beyond one overall scale (M\_P).
 
 ---
 
@@ -19,7 +19,7 @@ The CKM matrix [1,2] contains four physical parameters — three mixing angles a
 
 We demonstrate that all four CKM parameters follow from the [7,4,3] Hamming code over GF(8), the unique binary linear code with length n = 7, dimension k = 4, and minimum distance d = 3. This code is perfect (saturates the Hamming bound), corrects all single-bit errors, and admits exactly three Frobenius orbits — one per quark generation. The code's three mathematical structures — real (Fisher information), algebraic (complement map), and complex (cyclotomic embedding) — generate the CKM magnitudes, weak coupling relation, and CP phase respectively.
 
-The paper is organized as follows. Section 2 defines the code and its automorphism. Section 3 derives the probability templates from first principles. Sections 4–7 derive the four CKM parameters. Section 8 proves θ\_QCD = 0. Section 9 connects the code to the SU(3) structure constants via octonions. Section 10 derives the proton lifetime from the minimum distance.
+The paper is organized as follows. Section 2 defines the code and its automorphism. Section 3 derives the probability templates, identifying which aspects are uniquely forced and which involve a code-theoretic selection rule. Sections 4–7 derive the four CKM parameters. Section 8 proves θ\_QCD = 0. Section 9 connects the code to the SU(3) structure constants via octonions. Section 10 derives the proton lifetime from the minimum distance.
 
 ## 2. The [7,4,3] Hamming Code
 
@@ -52,23 +52,23 @@ The code admits three progressively richer structures:
 2. **Algebraic** (complement map x → x+α⁵): connects matter and antimatter, mediates V\_cb through the weak coupling.
 3. **Complex** (cyclotomic embedding in Q(ω₇)): Gauss periods encode CP violation; the strong sector ratio is exactly real, giving θ\_QCD = 0.
 
-## 3. Template Derivation from First Principles
+## 3. Template Derivation
 
-Each generation's probability template — describing how it distributes signal across the n = 7 code positions — is derived from the cyclotomic structure of the code.
+Each generation's probability template — describing how it distributes signal across the n = 7 code positions — follows from the code's structure with varying degrees of constraint.
 
-**Template s₃ = (1, 0, 0, 0, 0, 0, 0):** The Frobenius fixed point α⁰ occupies position 1 exclusively. The Gauss period S₃ = ω⁰ = 1 is purely real: one point, no spread.
+**Template s₃ = (1, 0, 0, 0, 0, 0, 0):** The Frobenius fixed point α⁰ occupies position 1 exclusively. Forced: there is exactly one fixed point.
 
-**Template s₂ = (0, 1/6, 1/6, 1/6, 1/6, 1/6, 1/6):** The orbit O₂ has three elements in the cyclotomic field Q(ω₇). Each element is complex, contributing both real and imaginary parts. Three complex dimensions equal six real coordinates. By the maximum-entropy principle, s₂ is uniform on the six available positions (position 1 is blocked by Gen 3). The Gauss period S₂ = (−1+i√7)/2 is complex — it spreads across both real and imaginary dimensions.
+**Template s₂ = (0, 1/6, 1/6, 1/6, 1/6, 1/6, 1/6):** Forced by codeword marginals. Among the 16 codewords, those with bit 1 = 0 (excluding the zero codeword) have uniform marginals over positions 2–7. This is a property of the [7,4,3] weight enumerator: every non-fixed position appears equally among codewords where the fixed point is inactive. Gen 2 is excluded from position 1 because Gen 3 (heavier, condensing first) occupies it.
 
-**Template s₁ = (1/9, 1/9, 1/9, 1/6, 1/6, 1/6, 1/6):** The first generation's template is determined by the electromagnetic parity check (row 3 of H). EM-active positions ({4,5,6,7}, where H₃ⱼ = 1) carry weight 1/6; EM-inactive positions ({1,2,3}, where H₃ⱼ = 0) carry weight 1/9. This sums to 4(1/6) + 3(1/9) = 1. The EM check selects the imaginary component of the cyclotomic embedding; positions where EM is active are positions where the seventh roots of unity have larger imaginary parts. The weight ratio (1/6)/(1/9) = 3/2 = (n−k)/(n−k−1).
+**Template s₁ = (1/9, 1/9, 1/9, 1/6, 1/6, 1/6, 1/6):** Constrained but not uniquely forced. Gen 1 (the "mist," last to condense) can visit position 1, unlike Gen 2. The weight ratio (1/6)/(1/9) = 3/2 is determined by the syndrome weight structure: the 7 positions have syndrome weights {1,1,2,1,2,2,3}, and any 3-vs-4 positional split defined by a row of H gives group averages 4/3 and 2 in ratio 3/2. Among the 9 possible transversals (one representative per Frobenius orbit), four have minimum total syndrome weight = k = 4. All four produce the identical Poisson Fisher matrix I = (1/10) × [[13,14,3],[14,16,0],[3,0,27]]. The template ambiguity among these four is gauge freedom with no physical consequences.
 
-The physical interpretation: Gen 1 (the lightest, the "mist") couples primarily through electromagnetism. "Light is everywhere" — the EM force determines Gen 1's template.
+The selection rule "minimum total syndrome weight in the transversal" is a weight-enumerator property of the code. We do not currently derive it from a deeper principle, though we note these transversals also minimize the Shannon entropy H(s₁) = (2/3)ln(18) = (2/3)ln(2(n−k)²) among all nine options.
 
 ## 4. |V\_us| from the Cramér–Rao Bound
 
-### 4.1 Fisher information matrix
+### 4.1 Poisson Fisher information matrix
 
-At equal priors η\_g = 1/3, the Fisher information matrix for the generation mixture fractions is:
+The Poisson Fisher information for the generation mixture fractions (τ\_cdma convention: I\_gh = Σ\_j s\_g(j)s\_h(j)/μ(j), no reference subtraction) at equal priors η\_g = 1/3:
 
 ```
 I = (1/10) × | 13  14   3 |
@@ -95,7 +95,7 @@ The mixing angle between generations 1 and 2:
 
 **sin²θ₁₂ = 1 − r₁₂² = 1 − 49/52 = 3/52**
 
-This is *derived*, not fitted: it follows uniquely from the Fisher matrix, which follows uniquely from the templates, which follow uniquely from the code's cyclotomic structure.
+This follows from the Fisher matrix, which follows from the templates. The templates s₃ and s₂ are uniquely forced; s₁ is constrained to four equivalent choices, all giving the same Fisher matrix.
 
 ### 4.3 The error-detection bridge
 
@@ -203,7 +203,7 @@ This is consistent with the Super-Kamiokande bound τ > 1.6 × 10³⁴ years [3]
 | g | √(3/7) | 0.6547 | 0.6530(12) | 1.4σ |
 | τ\_proton | exp(175)/m\_p | ~10⁴⁴ yr | > 10³⁴ yr | ✓ |
 
-All four CKM parameters, the strong CP phase, the weak coupling, and the proton lifetime follow from one mathematical object: the [7,4,3] Hamming code over GF(8). No free parameters beyond one overall scale (M\_P). The full framework extending to PMNS, masses, gauge couplings, cosmology, and neutrino masses is presented in the companion paper [6].
+All four CKM parameters, the strong CP phase, the weak coupling, and the proton lifetime follow from one mathematical object: the [7,4,3] Hamming code over GF(8). The templates s₃ and s₂ are uniquely forced by the code; s₁ is constrained to four minimum-cost transversals, all producing the identical Fisher matrix — the residual ambiguity is gauge freedom. One code-theoretic selection rule (minimum syndrome weight) remains underived. No free parameters beyond one overall scale (M\_P). The full framework extending to PMNS, masses, gauge couplings, cosmology, neutrino masses, and multiverse predictions is presented in the companion paper [6].
 
 ## Acknowledgments
 
