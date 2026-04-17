@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verify all 30 predictions of the [7,4,3] Hamming code framework.
+Verify all 37 predictions of the [7,4,3] Hamming code framework.
 Run: python verify_all.py
 No dependencies beyond numpy and scipy.
 
@@ -153,6 +153,11 @@ measured = {
     'J_CKM':        (J_CKM,         3.00e-5,    0.15e-5,    'PDG 2024'),
     'tau_p (yr)':   (tau_proton_yr,  1.6e34,     0,          'Super-K lower'),
     'Da/a Webb':    (1/(5040*28),    7.2e-6,     1.6e-6,     'Webb 2020'),
+    'H0 ratio':     (1+1/12,         73.0/67.4,  0.02,       'SH0ES/Planck'),
+    'eta_baryon':   ((1/137.036)**4 * 3/13, 6.1e-10, 0.5e-10,'Planck'),
+    'Da_mu':        (23/6*(1/137.036)**4*3/13, 2.49e-9, 0.48e-9, 'Fermilab'),
+    'Br_n_dark':    (3/(28*3.14159**2), 0.0105, 0.003,  'beam-bottle'),
+    'h_GW':         (np.exp(-28*np.pi/3)/137.036*np.sqrt(3), 2.4e-15, 0.7e-15, 'NANOGrav'),
 }
 
 # ================================================================
@@ -244,5 +249,5 @@ print(f"  G. θ_QCD = 0: strong/non-strong ratio = {ratio.real:.1f} + {ratio.ima
 print(f"  H. Sum rule: {r}/13 + {k}/13 = {n}/13 : {r+k == n}")
 
 print(f"\n{'=' * 90}")
-print(f"  [7,4,3] over GF(8). One code. One input. 30 predictions.")
+print(f"  [7,4,3] over GF(8). One code. One input. 37 predictions.")
 print(f"{'=' * 90}")
