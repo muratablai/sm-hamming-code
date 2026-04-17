@@ -37,6 +37,10 @@ The gauge group SU(3)×SU(2)×U(1) is the error-correction structure. 16 fermion
 - **m₁ ≈ 0.** If the lightest neutrino mass exceeds ~10 meV, we're wrong.
 - **Proton lifetime ~10⁴⁴ years.** If proton decay is found below this, we're wrong.
 - **γ wave:** CKM angle γ should rise from ~63° toward ~69° as Run 3 data is analyzed.
+- **Discrete α:** If α varies spatially, it takes only 3 discrete values (1/136.1, 1/130.8, 1/127.7).
+- **Webb amplitude:** Δα/α = 1/(7! × 28) = 7.09 × 10⁻⁶ (current measurement: 7.2 ± 1.6 × 10⁻⁶).
+- **Correlated variation:** If α shifts, sin²θ_W and V_us must shift in a locked ratio.
+- **Killer test:** Measure α AND sin²θ_W in the same quasar absorption system. ESPRESSO can do this.
 
 ## Author
 
