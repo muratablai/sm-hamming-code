@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verify all 37 predictions of the [7,4,3] Hamming code framework.
+Verify all 38 predictions of the [7,4,3] Hamming code framework.
 Run: python verify_all.py
 No dependencies beyond numpy and scipy.
 
@@ -70,7 +70,7 @@ sin2_th13_PMNS = r / (vL * np.sqrt(alpha_w))
 # ================================================================
 # MASSES
 # ================================================================
-# Universal formula: mass ratio = exp(√S)
+# Between-family: mass ratio = exp(√S)
 mt_over_v = 1 / np.sqrt(2)            # m_t = v/√2
 mH_over_v = 0.5                        # m_H = v/2
 ms_md = np.exp(np.sqrt(9))            # = exp(3), sober walk
@@ -80,6 +80,17 @@ mt_mc = vL * np.sqrt(alpha_w)         # condensation
 mc_mu = mt_mc * 13 / 3                # + collapse factor
 mb_ms = vL * 3/52 * 25/24            # + crystal defect
 md = 93.4 / ms_md                     # from m_s/m_d
+
+# Within-family: Landauer gene rewrite costs
+# Non-EM gene: coded bit cost = ln(2) × (nk+1)/nk = ln(2) × 29/28
+# EM gene (gene 4 = G row 4 = H row 3): ln(2)/r² = ln(2)/9
+# Mass ratio = exp(sum of gene costs for changed genes)
+ln2 = np.log(2)
+cost_nonEM = ln2 * (n*k + 1) / (n*k)  # = ln(2) × 29/28
+cost_EM = ln2 / r**2                   # = ln(2)/9
+mu_me = np.exp(2 * cost_nonEM)         # u/e: rewrites genes {1,3}
+md_mu = np.exp(cost_nonEM + cost_EM)   # d/u: rewrites genes {2,4}
+md_me = np.exp(3*cost_nonEM + cost_EM) # d/e: all 4 genes
 
 # Proton
 mp = Lambda * np.sqrt(2**r)           # Λ√8 = Bekenstein of syndrome sphere
@@ -144,6 +155,9 @@ measured = {
     'm_c/m_u':      (mc_mu,         590,        120,        'PDG 2024'),
     'm_b/m_s':      (mb_ms,         44.8,       2.0,        'PDG 2024'),
     'm_p (GeV)':    (mp,            0.9383,     0.0001,     'PDG 2024'),
+    'm_u/m_e':      (mu_me,         4.227,      0.20,       'PDG 2024 MS-bar'),
+    'm_d/m_u':      (md_mu,         2.162,      0.15,       'PDG 2024 MS-bar'),
+    'm_d/m_e':      (md_me,         9.139,      0.50,       'PDG 2024 MS-bar'),
     'm3_nu (meV)':  (m3_nu*1e3,     50.87,      2.0,        'from Dm2'),
     'm2_nu (meV)':  (m2_nu*1e3,     8.614,      0.5,        'from Dm2'),
     'Dm2_ratio':    (dm2_ratio,     33.9,       1.0,        'NuFIT 5.2'),
@@ -219,6 +233,10 @@ struct = [
     ("Gauge generators", n+k+1, 12),
     ("b0(Nf=6)", n, 7),
     ("Fermions no nuR", 2**k - 1, 15),
+    ("Spacetime dims", k, 4),
+    ("Spatial dims", k-1, 3),
+    ("Schwarzschild factor", k-r+1, 2),
+    ("BH entropy 1/factor", k, 4),
 ]
 matches = 0
 for name, code_val, sm_val in struct:
@@ -248,6 +266,18 @@ print(f"  F. S₁+S₂+S₃ = {(omega**0 + omega**1+omega**2+omega**3+omega**4+o
 print(f"  G. θ_QCD = 0: strong/non-strong ratio = {ratio.real:.1f} + {ratio.imag:.1e}i = -1 (real)")
 print(f"  H. Sum rule: {r}/13 + {k}/13 = {n}/13 : {r+k == n}")
 
+# Session 14-15 theorems
+G_mat = np.array([[1,0,0,0,0,1,1],[0,1,0,0,1,0,1],[0,0,1,0,1,1,0],[0,0,0,1,1,1,1]])
+H_mat = np.array([[1,0,1,0,1,0,1],[0,1,1,0,0,1,1],[0,0,0,1,1,1,1]])
+GGT = G_mat @ G_mat.T
+HHT = H_mat @ H_mat.T
+trace_sum = np.trace(GGT) + np.trace(HHT) + r
+print(f"  I. Trace identity: Tr(GG^T)+Tr(HH^T)+r = {int(trace_sum)} = nk = {n*k} : {int(trace_sum)==n*k}")
+print(f"  J. Flavor identity: 2^(r-1) = r+1 : {2**(r-1)} = {r+1} : {2**(r-1)==r+1}")
+print(f"  K. G row 4 = H row 3: {np.array_equal(G_mat[3], H_mat[2])} (EM = info+check)")
+print(f"  L. k-r = 1 (dark/light differ by 1 bit): {k-r} = 1 : {k-r==1}")
+
 print(f"\n{'=' * 90}")
-print(f"  [7,4,3] over GF(8). One code. One input. 37 predictions.")
+print(f"  [7,4,3] over GF(8). One code. One input. {total} predictions.")
+print(f"  16 structural identities. 12 theorems.")
 print(f"{'=' * 90}")
